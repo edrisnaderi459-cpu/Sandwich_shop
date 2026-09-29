@@ -9,35 +9,9 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Sandwich Shop App',
-      home: Scaffold(
-        appBar: AppBar(title: const Text('My Sandwich Shop')),
-        backgroundColor: Colors.orange,
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            OrderItemDisplay(5, 'Footlong'),
-            Row(
-              children: [
-                ElevatedButton(onPressed: onPressed, child: child),
-                ElevatedButton(onPressed: onPressed, child: child),
-              ],
-            ),
-          ],
-        ),
-        children: [
-          ElevatedButton(
-            onPressed: () => print('Add button pressed'),
-            child: const Text('Add'),
-          ),
-          const SizedBox(width: 16),
-          ElevatedButton(
-            onPressed: () => print('Remove button pressed'),
-            child: const Text('Remove'),
-          ),
-        ],
-      ),
+      home: OrderScreen(maxQuantity: 5),
     );
   }
 }
@@ -45,23 +19,53 @@ class App extends StatelessWidget {
 class OrderScreen extends StatefulWidget{
   final int maxQuantity;
 
-  OrderScreen({super.key, this.maxQuantity = 10});
+const OrderScreen({super.key, this.maxQuantity = 10});
 
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
-    throw UnimplementedError();
+    return _OrderScreenState();
   }
 }
 
 class _OrderScreenState extends State<OrderScreen> {
   int _quantity = 0;
 
+
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
-  }
+   return Scaffold(
+    appBar: AppBar(
+      title: const Text('Sandwich Counter'),
+    ),
+    body: Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          OrderItemDisplay(
+            _quantity,
+            'Footlong',
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                onPressed: () => print('Add button pressed!'),
+                child: const Text('Add'),
+              ),
+              ElevatedButton(
+                onPressed: () => print('Remove button pressed!'),
+                child: const Text('Remove'),
+              ),
+            ],
+          ),
+        ],
+      ),
+    ),
+  );
+} 
 }
+
 class OrderItemDisplay extends StatelessWidget {
   final String itemType;
   final int quantity;
