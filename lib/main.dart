@@ -7,21 +7,39 @@ void main() {
 class App extends StatelessWidget {
   const App({super.key});
 
-
-
-
   @override
- Widget build(BuildContext context) {
-  return MaterialApp(
-    title: 'Sandwich Shop App',
-    home: Scaffold(
-      appBar: AppBar(title: const Text('My Sandwich Shop')),
-      body: const Center(
-        child: OrderItemDisplay(5, 'Footlong'),
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Sandwich Shop App',
+      home: Scaffold(
+        appBar: AppBar(title: const Text('My Sandwich Shop')),
+        backgroundColor: Colors.orange,
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            OrderItemDisplay(5, 'Footlong'),
+            Row(
+              children: [
+                ElevatedButton(onPressed: onPressed, child: child),
+                ElevatedButton(onPressed: onPressed, child: child),
+              ],
+            ),
+          ],
+        ),
+        children: [
+          ElevatedButton(
+            onPressed: () => print('Add button pressed'),
+            child: const Text('Add'),
+          ),
+          const SizedBox(width: 16),
+          ElevatedButton(
+            onPressed: () => print('Remove button pressed'),
+            child: const Text('Remove'),
+          ),
+        ],
       ),
-    ),
-  );
- }
+    );
+  }
 }
 
 class OrderItemDisplay extends StatelessWidget {
