@@ -42,6 +42,26 @@ class App extends StatelessWidget {
   }
 }
 
+class OrderScreen extends StatefulWidget{
+  final int maxQuantity;
+
+  OrderScreen({super.key, this.maxQuantity = 10});
+
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    throw UnimplementedError();
+  }
+}
+
+class _OrderScreenState extends State<OrderScreen> {
+  int _quantity = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
 class OrderItemDisplay extends StatelessWidget {
   final String itemType;
   final int quantity;
