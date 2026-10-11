@@ -19,7 +19,12 @@ class SandwichCard extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(width: 80, height: 80),
+                Image.asset(
+                  sandwich.imagePath,
+                  width: 80,
+                  height: 80,
+                  fit: BoxFit.cover,
+                ),
                 const SizedBox(width: 16.0),
                 Expanded(
                   child: Column(

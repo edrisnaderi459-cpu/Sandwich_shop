@@ -58,6 +58,28 @@ void main() {
         expect(find.text('£4.50'), findsOneWidget);
         expect(find.text('Order'), findsNWidgets(2));
       });
+
+      testWidgets(
+        'Tapping Order navigates to OrderScreen with selected sandwich',
+        (WidgetTester tester) async {
+          await tester.pumpWidget(const App());
+
+          await tester.tap(find.text('Order').first);
+          await tester.pumpAndSettle();
+
+          expect(find.byType(OrderScreen), findsOneWidget);
+          expect(find.text('Order Footlong Sub'), findsOneWidget);
+          expect(find.text('0 Footlong Sub sandwich(es): '), findsOneWidget);
+
+          await tester.tap(find.text('Add'));
+          await tester.pump();
+          expect(find.text('1 Footlong Sub sandwich(es): 🥪'), findsOneWidget);
+
+          await tester.tap(find.text('Remove'));
+          await tester.pump();
+          expect(find.text('0 Footlong Sub sandwich(es): '), findsOneWidget);
+        },
+      );
     });
   });
 }
