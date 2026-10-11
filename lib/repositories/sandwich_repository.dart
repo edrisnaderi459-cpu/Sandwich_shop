@@ -2,6 +2,8 @@ import 'package:flutter_app/models/sandwich.dart';
 
 class SandwichRepository {
   List<Sandwich> getSandwiches() {
+
+
     return const [
       Sandwich(
         id: 'footlong',
@@ -20,5 +22,16 @@ class SandwichRepository {
 
     ];
     
+  }
+  
+
+    Sandwich? getSandwichById(String id) {
+    final List<Sandwich> allSandwiches = getSandwiches();
+    for (final Sandwich sandwich in allSandwiches) {
+      if (sandwich.id == id) {
+        return sandwich;
+      }
+    }
+    return null;
   }
 }
