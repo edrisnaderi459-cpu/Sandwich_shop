@@ -12,9 +12,7 @@ class MenuScreen extends StatelessWidget {
     final List<Sandwich> sandwiches = repository.getSandwiches();
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Sandwich Menu'),
-      ),
+      appBar: AppBar(title: const Text('Sandwich Menu')),
       body: ListView.builder(
         itemCount: sandwiches.length,
         itemBuilder: (context, index) {

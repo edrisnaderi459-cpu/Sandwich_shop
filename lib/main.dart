@@ -10,13 +10,9 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Sandwich Shop App',
-      home:  MenuScreen(),
-    );
+    return const MaterialApp(title: 'Sandwich Shop App', home: MenuScreen());
   }
 }
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
