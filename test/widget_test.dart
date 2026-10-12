@@ -7,10 +7,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_app/main.dart';
+import 'package:flutter_app/models/sandwich.dart';
 import 'package:flutter_app/screens/menu_screen.dart';
 import 'package:flutter_app/screens/order_screen.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_app/models/sandwich.dart';
 
 void main() {
   group('OrderItemDisplay widget tests', () {
