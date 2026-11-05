@@ -1,0 +1,33 @@
+import 'package:flutter_app/models/sandwich.dart';
+
+class SandwichRepository {
+  List<Sandwich> getSandwiches() {
+    return const [
+      Sandwich(
+        id: 'footlong',
+        name: 'Footlong Sub',
+        description: 'A freshly baked 12 inch sandwich filled with savoury indgredients.',
+        price: 7.50,
+        imagePath: 'assets/images/footlong.jpeg',
+      ),
+      Sandwich(
+        id: 'six-inch',
+        name: 'Six-Inch Sub',
+        description:
+            'A freshly baked 6 inch sandwich made with your indgredients.',
+        price: 4.50,
+        imagePath: 'assets/images/six_inch.jpeg',
+      ),
+    ];
+  }
+
+  Sandwich? getSandwichById(String id) {
+    final List<Sandwich> allSandwiches = getSandwiches();
+    for (final Sandwich sandwich in allSandwiches) {
+      if (sandwich.id == id) {
+        return sandwich;
+      }
+    }
+    return null;
+  }
+}
