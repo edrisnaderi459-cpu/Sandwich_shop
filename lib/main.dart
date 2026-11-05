@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/menu_screen.dart';
 import 'package:flutter_app/constants.dart';
+import 'package:flutter_app/screens/basket_screen.dart';
 
 void main() {
   runApp(const App());
@@ -13,9 +14,17 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: appTitle,
-      home: const MenuScreen(),
+      initialRoute: '/',
+      routes: <String, WidgetBuilder>{
+        '/': (BuildContext context) {
+          return const MenuScreen();
+        },
+        '/basket': (BuildContext context) {
+          return const BasketScreen();
+        },
+      },
       debugShowCheckedModeBanner: false,
-       theme: ThemeData(
+      theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           seedColor: shopBrand,
           primary: shopBrand,
@@ -27,7 +36,7 @@ class App extends StatelessWidget {
           elevation: 0,
         ),
       ),
-      );
+    );
   }
 }
 
