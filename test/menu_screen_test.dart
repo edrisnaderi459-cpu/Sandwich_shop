@@ -3,18 +3,21 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_app/screens/basket_screen.dart';
 import 'package:flutter_app/screens/menu_screen.dart';
 import 'package:flutter_app/widgets/sandwich_card.dart';
+import 'package:flutter_app/screens/settings_screen.dart';
 
 void main() {
-  testWidgets('MenuScreen shows the sandwich list and a basket button', (
+  testWidgets(
+    'MenuScreen shows the sandwich list, settings button and a basket button', (
     WidgetTester tester,
   ) async {
     await tester.pumpWidget(const MaterialApp(home: MenuScreen()));
 
     expect(find.byType(SandwichCard), findsWidgets);
     expect(find.byIcon(Icons.shopping_basket), findsOneWidget);
+    expect(find.byIcon(Icons.person_outline), findsOneWidget);
   });
 
-  testWidgets('Tapping the basket button navigates to BasketScreen', (
+  testWidgets('Tapping the settings button navigates to SettingsScreen', (
     WidgetTester tester,
   ) async {
     await tester.pumpWidget(
@@ -24,16 +27,16 @@ void main() {
           '/': (BuildContext context) {
             return const MenuScreen();
           },
-          '/basket': (BuildContext context) {
-            return const BasketScreen();
+          '/settings': (BuildContext context) {
+            return const SettingsScreen();
           },
         },
       ),
     );
 
-    await tester.tap(find.byIcon(Icons.shopping_basket));
+    await tester.tap(find.byIcon(Icons.person_outline));
     await tester.pumpAndSettle();
 
-    expect(find.byType(BasketScreen), findsOneWidget);
+    expect(find.byType(SettingsScreen), findsOneWidget);
   });
 }
