@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constants.dart';
 import 'package:flutter_app/models/cart_item.dart';
@@ -49,7 +50,7 @@ class _BasketScreenState extends State<BasketScreen> {
         actions: const [BasketButton()],
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: content,
       ),
     );

@@ -32,6 +32,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
     _nameController = TextEditingController();
     _addressController = TextEditingController();
     _emailController = TextEditingController();
+
+    _loadSettings();
   }
 
   @override
@@ -59,10 +61,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
       receiveNewsletter: _receiveNewsletter,
     );
 
+    if (!mounted) {
+      return;
+    }
+
     setState(() {
-      if (!mounted) {
-        return;
-      }
       _confirmationMessage = 'Settings saved for ${settings.name}';
     });
   }

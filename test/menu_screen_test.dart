@@ -1,16 +1,19 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_app/screens/basket_screen.dart';
 import 'package:flutter_app/screens/menu_screen.dart';
 import 'package:flutter_app/widgets/sandwich_card.dart';
 import 'package:flutter_app/screens/settings_screen.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences_platform_interface/in_memory_shared_preferences_async.dart';
+import 'package:shared_preferences_platform_interface/shared_preferences_async_platform_interface.dart';
 
 void main() {
-  setUp(() {
-    rootBundle.clear();
-  });
+setUp(() {
+  rootBundle.clear();
+  SharedPreferencesAsyncPlatform.instance =
+      InMemorySharedPreferencesAsync.empty();
+});
 
   testWidgets(
     'MenuScreen shows the sandwich list, settings button and a basket button',
