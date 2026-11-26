@@ -4,7 +4,7 @@ import 'package:flutter_app/models/cart_item.dart';
 import 'package:flutter_app/repositories/cart_repository.dart';
 import 'package:flutter_app/widgets/basket_button.dart';
 import 'package:flutter_app/widgets/primary_button.dart';
-
+import 'package:flutter_app/widgets/orders_button.dart';
 
 class BasketScreen extends StatefulWidget {
   const BasketScreen({super.key});
@@ -47,7 +47,7 @@ class _BasketScreenState extends State<BasketScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(appTitle, style: shopHeaderStyle),
-        actions: const [BasketButton()],
+         actions: const [OrdersButton(), BasketButton()],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),

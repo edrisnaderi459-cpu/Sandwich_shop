@@ -3,6 +3,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_app/screens/menu_screen.dart';
 import 'package:flutter_app/constants.dart';
 import 'package:flutter_app/screens/orders_screens.dart';
+import 'package:flutter_app/screens/settings_screen.dart';
+import 'package:flutter_app/screens/basket_screen.dart';
 
 bool isSupportedPlatform() {
   if (kIsWeb) {
@@ -75,6 +77,12 @@ class MyApp extends StatelessWidget {
       routes: {
         '/orders': (BuildContext context) {
           return const OrdersScreen();
+        },
+        '/basket': (BuildContext context) {
+          return const BasketScreen();
+        },
+        '/settings': (BuildContext context) {
+          return const SettingsScreen();
         },
       },
     );

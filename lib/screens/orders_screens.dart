@@ -47,7 +47,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(appTitle, style: shopHeaderStyle),
-        actions: const [BasketButton()],
+         actions: const [OrdersButton(), BasketButton()],
       ),
       body: body,
     );
