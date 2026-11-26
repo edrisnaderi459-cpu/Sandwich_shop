@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/models/sandwich.dart';
 import 'package:flutter_app/screens/order_screen.dart';
+import 'package:flutter_app/widgets/primary_button.dart';
 
 class SandwichCard extends StatelessWidget {
   final Sandwich sandwich;
@@ -24,6 +25,17 @@ class SandwichCard extends StatelessWidget {
                   width: 80,
                   height: 80,
                   fit: BoxFit.cover,
+                  errorBuilder: (
+                    BuildContext context,
+                    Object error,
+                    StackTrace? stackTrace,
+                  ) {
+                    return const SizedBox(
+                      width: 80,
+                      height: 80,
+                      child: Center(child: Text('Image unavailable')),
+                    );
+                  },
                 ),
                 const SizedBox(width: 16.0),
                 Expanded(
@@ -58,7 +70,8 @@ class SandwichCard extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                ElevatedButton(
+                PrimaryButton(
+                  label: 'Order',
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -69,7 +82,7 @@ class SandwichCard extends StatelessWidget {
                       ),
                     );
                   },
-                  child: const Text('Order'),
+             
                 ),
               ],
             ),
