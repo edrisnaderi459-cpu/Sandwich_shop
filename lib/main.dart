@@ -1,8 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_app/screens/menu_screen.dart';
 import 'package:flutter_app/constants.dart';
+import 'package:flutter_app/screens/orders_screens.dart';
 
 bool isSupportedPlatform() {
   if (kIsWeb) {
@@ -71,7 +71,12 @@ class MyApp extends StatelessWidget {
           elevation: 0,
         ),
       ),
-      home: const MenuScreen(),
+            home: const MenuScreen(),
+      routes: {
+        '/orders': (BuildContext context) {
+          return const OrdersScreen();
+        },
+      },
     );
   }
 }
