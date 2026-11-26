@@ -5,6 +5,8 @@ import 'package:flutter_app/repositories/cart_repository.dart';
 import 'package:flutter_app/widgets/basket_button.dart';
 import 'package:flutter_app/widgets/primary_button.dart';
 import 'package:flutter_app/widgets/orders_button.dart';
+import 'package:flutter_app/database/sandwich_db.dart';
+import 'package:flutter_app/models/order_record.dart';
 
 class BasketScreen extends StatefulWidget {
   const BasketScreen({super.key});
@@ -17,6 +19,55 @@ class BasketScreen extends StatefulWidget {
 
 class _BasketScreenState extends State<BasketScreen> {
   String _confirmationMessage = '';
+  String _buildSummary(List<CartItem> items) {
+    final List<String> parts = [];
+    for (final CartItem item in items) {
+      parts.add('${item.quantity} x ${item.sandwich.name}');
+    }
+    return parts.join(', ');
+  }
+
+   Future<void> _checkout(CartRepository cart, List<CartItem> items) async {
+    final String summary = _buildSummary(items);
+    final double total = cart.getTotalDue();
+    final String date = _formatDate(DateTime.now());
+
+    try {
+      final SandwichDatabase database = SandwichDatabase.instance;
+      final int orderNumber = await database.getNextOrderNumber();
+      final OrderRecord record = OrderRecord(
+        orderNumber: orderNumber,
+        summary: summary,
+        total: total,
+        date: date,
+      );
+
+      await database.insertOrder(record);
+      cart.clear();
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _confirmationMessage = 'Order $orderNumber saved';
+      });
+      Navigator.pushNamed(context, '/orders');
+    } catch (error) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _confirmationMessage = 'Could not save your order: $error';
+      });
+    }
+  }
+
+   String _formatDate(DateTime now) {
+    final String day = now.day.toString().padLeft(2, '0');
+    final String month = now.month.toString().padLeft(2, '0');
+    final String hour = now.hour.toString().padLeft(2, '0');
+    final String minute = now.minute.toString().padLeft(2, '0');
+    return '$day/$month/${now.year} $hour:$minute';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -158,10 +209,7 @@ class _BasketScreenState extends State<BasketScreen> {
         child: PrimaryButton(
           label: 'Checkout',
           onPressed: () {
-            setState(() {
-              cart.clear();
-              _confirmationMessage = 'Thanks, your order is on its way';
-            });
+           _checkout(cart, items);
           },
         ),
       ),

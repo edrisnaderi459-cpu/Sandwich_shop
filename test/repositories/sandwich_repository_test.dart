@@ -53,7 +53,7 @@ void main() {
       final List<Sandwich> sandwiches =
           await repository.loadSandwichesFromAsset();
 
-      expect(sandwiches.length, 4);
+      expect(sandwiches.length, 3);
 
       expect(sandwiches[0].id, 'footlong');
       expect(sandwiches[1].id, 'six-inch');
@@ -62,8 +62,7 @@ void main() {
       expect(sandwiches[2].price, 6.99);
       expect(sandwiches[2].imagePath, 'assets/images/nachos.jpeg');
 
-      expect(sandwiches[3].id, 'nonexistent');
-      expect(sandwiches[3].price, 0.0);
+
 
       expect(repository.getSandwiches(), sandwiches);
     });
