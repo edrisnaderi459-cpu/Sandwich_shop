@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:flutter_app/models/sandwich.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_app/models/sandwich.dart';
 
 class SandwichRepository {
   List<Sandwich>? _cachedSandwiches;
