@@ -58,7 +58,7 @@ class _OrderScreenState extends State<OrderScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(appTitle, style: shopHeaderStyle),
-         actions: const [OrdersButton(), BasketButton()],
+        actions: const [OrdersButton(), BasketButton()],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),

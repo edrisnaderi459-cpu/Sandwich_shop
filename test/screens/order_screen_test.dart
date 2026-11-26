@@ -18,7 +18,7 @@ void main() {
     CartRepository.instance.clear();
   });
 
-   testWidgets('OrderScreen shows quantity buttons and Add to Basket button', (
+  testWidgets('OrderScreen shows quantity buttons and Add to Basket button', (
     WidgetTester tester,
   ) async {
     await tester.pumpWidget(

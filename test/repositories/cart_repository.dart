@@ -3,7 +3,6 @@ import 'package:flutter_app/models/cart_item.dart';
 import 'package:flutter_app/models/sandwich.dart';
 import 'package:flutter_app/repositories/cart_repository.dart';
 
-
 const Sandwich testSandwich1 = Sandwich(
   id: 'footlong',
   name: 'Footlong Sub',
@@ -25,9 +24,7 @@ void main() {
     CartRepository.instance.clear();
   });
 
-   group('CartRepository tests', () {
-
-    
+  group('CartRepository tests', () {
     test('starts with empty basket and zero totals', () {
       final CartRepository cart = CartRepository.instance;
       expect(cart.getItems().length, 0);
@@ -40,14 +37,8 @@ void main() {
 
     test('adds items and calculates subtotal and delivery fee correctly', () {
       final CartRepository cart = CartRepository.instance;
-      const CartItem item1 = CartItem(
-        sandwich: testSandwich1,
-        quantity: 2,
-      );
-      const CartItem item2 = CartItem(
-        sandwich: testSandwich2,
-        quantity: 1,
-      );
+      const CartItem item1 = CartItem(sandwich: testSandwich1, quantity: 2);
+      const CartItem item2 = CartItem(sandwich: testSandwich2, quantity: 1);
 
       cart.addItem(item1);
       cart.addItem(item2);
@@ -62,10 +53,7 @@ void main() {
 
     test('removes items correctly', () {
       final CartRepository cart = CartRepository.instance;
-      const CartItem item = CartItem(
-        sandwich: testSandwich1,
-        quantity: 1,
-      );
+      const CartItem item = CartItem(sandwich: testSandwich1, quantity: 1);
       cart.addItem(item);
       expect(cart.getItems().length, 1);
 
@@ -74,5 +62,4 @@ void main() {
       expect(cart.getTotalDue(), 0.0);
     });
   });
-
 }

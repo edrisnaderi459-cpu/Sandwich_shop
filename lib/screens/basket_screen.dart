@@ -27,7 +27,7 @@ class _BasketScreenState extends State<BasketScreen> {
     return parts.join(', ');
   }
 
-   Future<void> _checkout(CartRepository cart, List<CartItem> items) async {
+  Future<void> _checkout(CartRepository cart, List<CartItem> items) async {
     final String summary = _buildSummary(items);
     final double total = cart.getTotalDue();
     final String date = _formatDate(DateTime.now());
@@ -61,7 +61,7 @@ class _BasketScreenState extends State<BasketScreen> {
     }
   }
 
-   String _formatDate(DateTime now) {
+  String _formatDate(DateTime now) {
     final String day = now.day.toString().padLeft(2, '0');
     final String month = now.month.toString().padLeft(2, '0');
     final String hour = now.hour.toString().padLeft(2, '0');
@@ -98,7 +98,7 @@ class _BasketScreenState extends State<BasketScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(appTitle, style: shopHeaderStyle),
-         actions: const [OrdersButton(), BasketButton()],
+        actions: const [OrdersButton(), BasketButton()],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -209,7 +209,7 @@ class _BasketScreenState extends State<BasketScreen> {
         child: PrimaryButton(
           label: 'Checkout',
           onPressed: () {
-           _checkout(cart, items);
+            _checkout(cart, items);
           },
         ),
       ),

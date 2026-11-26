@@ -1,4 +1,3 @@
-
 import 'package:flutter_app/models/sandwich.dart';
 import 'package:flutter_app/repositories/sandwich_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -50,8 +49,8 @@ void main() {
     test('loadSandwichesFromAsset reads the bundled JSON menu', () async {
       final SandwichRepository repository = SandwichRepository();
 
-      final List<Sandwich> sandwiches =
-          await repository.loadSandwichesFromAsset();
+      final List<Sandwich> sandwiches = await repository
+          .loadSandwichesFromAsset();
 
       expect(sandwiches.length, 3);
 
@@ -61,8 +60,6 @@ void main() {
       expect(sandwiches[2].id, 'nachos');
       expect(sandwiches[2].price, 6.99);
       expect(sandwiches[2].imagePath, 'assets/images/nachos.jpeg');
-
-
 
       expect(repository.getSandwiches(), sandwiches);
     });

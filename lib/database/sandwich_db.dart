@@ -9,13 +9,11 @@ class SandwichDatabase {
 
   static Database? _database;
 
-
-void setDatabase(Database? db) {
+  void setDatabase(Database? db) {
     _database = db;
   }
 
-
-   Future<Database> get database async {
+  Future<Database> get database async {
     final Database? cachedDatabase = _database;
     if (cachedDatabase != null) {
       return cachedDatabase;
@@ -37,7 +35,7 @@ void setDatabase(Database? db) {
   }
 
   Future<void> createTables(Database db, int version) async {
-     await db.execute('''
+    await db.execute('''
       CREATE TABLE IF NOT EXISTS orders (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         order_number INTEGER NOT NULL,
@@ -46,24 +44,23 @@ void setDatabase(Database? db) {
         date TEXT NOT NULL
       )
     ''');
-    
   }
-  
-   Future<void> _createDB(Database db, int version) async {
+
+  Future<void> _createDB(Database db, int version) async {
     await createTables(db, version);
-     await db.insert('orders', <String, Object?>{
+    await db.insert('orders', <String, Object?>{
       'order_number': 1003,
       'summary': '2 x Footlong Sub',
       'total': 15.00,
       'date': '18/04/2026 12:45',
     });
-     await db.insert('orders', <String, Object?>{
+    await db.insert('orders', <String, Object?>{
       'order_number': 1002,
       'summary': '1 x Six-Inch Sub',
       'total': 4.50,
       'date': '02/03/2026 18:10',
     });
-      await db.insert('orders', <String, Object?>{
+    await db.insert('orders', <String, Object?>{
       'order_number': 1001,
       'summary': '3 x Footlong Sub',
       'total': 22.50,
@@ -71,13 +68,13 @@ void setDatabase(Database? db) {
     });
   }
 
-   Future<int> insertOrder(OrderRecord order) async {
+  Future<int> insertOrder(OrderRecord order) async {
     final Database db = await database;
     final int id = await db.insert('orders', order.toMap());
     return id;
   }
 
-   Future<List<OrderRecord>> getAllOrders() async {
+  Future<List<OrderRecord>> getAllOrders() async {
     final Database db = await database;
     final List<Map<String, Object?>> records = await db.query(
       'orders',
@@ -91,7 +88,7 @@ void setDatabase(Database? db) {
     return orders;
   }
 
-    Future<int> getNextOrderNumber() async {
+  Future<int> getNextOrderNumber() async {
     final Database db = await database;
     final List<Map<String, Object?>> records = await db.rawQuery(
       'SELECT MAX(order_number) as max_num FROM orders',
@@ -109,15 +106,11 @@ void setDatabase(Database? db) {
     return currentMax + 1;
   }
 
-   Future<void> close() async {
+  Future<void> close() async {
     final Database? cachedDatabase = _database;
     if (cachedDatabase != null) {
       await cachedDatabase.close();
       _database = null;
     }
   }
-
 }
-
-
-

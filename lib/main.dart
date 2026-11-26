@@ -46,7 +46,9 @@ class UnsupportedPlatformApp extends StatelessWidget {
       ),
       home: const Scaffold(
         body: Center(
-          child: Text('This platform is not supported. Please use Android.'),
+          child: Text(
+            'This platform is not supported. Please use an Android emulator.',
+          ),
         ),
       ),
     );
@@ -73,7 +75,7 @@ class MyApp extends StatelessWidget {
           elevation: 0,
         ),
       ),
-            home: const MenuScreen(),
+      home: const MenuScreen(),
       routes: {
         '/orders': (BuildContext context) {
           return const OrdersScreen();

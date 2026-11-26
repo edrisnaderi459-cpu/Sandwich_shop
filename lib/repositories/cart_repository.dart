@@ -3,15 +3,15 @@ import 'package:flutter_app/models/cart_item.dart';
 class CartRepository {
   CartRepository._internal();
 
-    static final CartRepository instance = CartRepository._internal();
-    
-    final List<CartItem> _items = [];
+  static final CartRepository instance = CartRepository._internal();
+
+  final List<CartItem> _items = [];
 
   List<CartItem> getItems() {
     return List<CartItem>.unmodifiable(_items);
   }
 
-    void addItem(CartItem item) {
+  void addItem(CartItem item) {
     _items.add(item);
   }
 
@@ -55,5 +55,4 @@ class CartRepository {
   void clear() {
     _items.clear();
   }
-
 }

@@ -7,10 +7,7 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
-          body: PrimaryButton(
-            label: 'Order',
-            onPressed: () {},
-          ),
+          body: PrimaryButton(label: 'Order', onPressed: () {}),
         ),
       ),
     );
@@ -18,8 +15,9 @@ void main() {
     expect(find.text('Order'), findsOneWidget);
   });
 
-  testWidgets('PrimaryButton invokes onPressed when tapped',
-      (WidgetTester tester) async {
+  testWidgets('PrimaryButton invokes onPressed when tapped', (
+    WidgetTester tester,
+  ) async {
     bool wasPressed = false;
 
     await tester.pumpWidget(

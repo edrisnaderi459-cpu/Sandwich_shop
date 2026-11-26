@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_app/screens/settings_screen.dart';
@@ -31,10 +30,11 @@ void main() {
     await tester.pumpAndSettle();
 
     final Finder nameField = find.widgetWithText(TextField, 'Full name');
-    final Finder addressField =
-        find.widgetWithText(TextField, 'Delivery address');
-    final Finder emailField =
-        find.widgetWithText(TextField, 'Email address');
+    final Finder addressField = find.widgetWithText(
+      TextField,
+      'Delivery address',
+    );
+    final Finder emailField = find.widgetWithText(TextField, 'Email address');
 
     await tester.enterText(nameField, 'Gerald Vernon-Jackson');
     await tester.enterText(addressField, 'Guildhall, PO1 2AJ');
@@ -80,8 +80,7 @@ void main() {
       findsOneWidget,
     );
 
-    final Switch reopenedSwitch =
-        tester.widget<Switch>(find.byType(Switch));
+    final Switch reopenedSwitch = tester.widget<Switch>(find.byType(Switch));
     expect(reopenedSwitch.value, isTrue);
   });
 
@@ -101,10 +100,7 @@ void main() {
 
     expect(find.text('Abdul Kadir'), findsOneWidget);
     expect(find.text('Portsmouth Guildhall, PO1 2AJ'), findsOneWidget);
-    expect(
-      find.text('abdul.kadir@portsmouthcc.gov.uk'),
-      findsOneWidget,
-    );
+    expect(find.text('abdul.kadir@portsmouthcc.gov.uk'), findsOneWidget);
 
     final Switch switchWidget = tester.widget<Switch>(find.byType(Switch));
     expect(switchWidget.value, isTrue);

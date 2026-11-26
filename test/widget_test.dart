@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_app/main.dart';
 import 'package:flutter_app/models/sandwich.dart';
@@ -61,8 +60,6 @@ void main() {
 
         await tester.scrollUntilVisible(find.text('Loaded Nachos'), 150);
         expect(find.text('£6.99'), findsOneWidget);
-
-       
       });
 
       testWidgets(
