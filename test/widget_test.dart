@@ -42,7 +42,7 @@ void main() {
       testWidgets('App displays MenuScreen as home', (
         WidgetTester tester,
       ) async {
-        await tester.pumpWidget(const App());
+        await tester.pumpWidget(const MyApp());
 
         expect(find.byType(MenuScreen), findsOneWidget);
         expect(find.text('Sandwich Menu'), findsOneWidget);
@@ -51,7 +51,7 @@ void main() {
       testWidgets('Displays sandwich cards with names and prices', (
         WidgetTester tester,
       ) async {
-        await tester.pumpWidget(const App());
+        await tester.pumpWidget(const MyApp());
 
         expect(find.text('Footlong Sub'), findsOneWidget);
         expect(find.text('£7.50'), findsOneWidget);
@@ -63,7 +63,7 @@ void main() {
       testWidgets(
         'Tapping Order navigates to OrderScreen with selected sandwich',
         (WidgetTester tester) async {
-          await tester.pumpWidget(const App());
+          await tester.pumpWidget(const MyApp());
 
           await tester.tap(find.text('Order').first);
           await tester.pumpAndSettle();
