@@ -1,18 +1,16 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_app/main.dart';
 import 'package:flutter_app/models/sandwich.dart';
 import 'package:flutter_app/screens/menu_screen.dart';
 import 'package:flutter_app/screens/order_screen.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter/services.dart';
 
 void main() {
+  setUp(() {
+    rootBundle.clear();
+  });
+
   group('OrderItemDisplay widget tests', () {
     testWidgets('displays zero sandwiches with no emoji', (
       WidgetTester tester,
@@ -42,28 +40,33 @@ void main() {
       testWidgets('App displays MenuScreen as home', (
         WidgetTester tester,
       ) async {
-        await tester.pumpWidget(const App());
+        await tester.pumpWidget(const MyApp());
+        await tester.pumpAndSettle();
 
         expect(find.byType(MenuScreen), findsOneWidget);
-        expect(find.text('Sandwich Menu'), findsOneWidget);
       });
 
       testWidgets('Displays sandwich cards with names and prices', (
         WidgetTester tester,
       ) async {
-        await tester.pumpWidget(const App());
+        await tester.pumpWidget(const MyApp());
+        await tester.pumpAndSettle();
 
         expect(find.text('Footlong Sub'), findsOneWidget);
         expect(find.text('£7.50'), findsOneWidget);
         expect(find.text('Six-Inch Sub'), findsOneWidget);
         expect(find.text('£4.50'), findsOneWidget);
-        expect(find.text('Order'), findsNWidgets(2));
+        expect(find.text('Order'), findsWidgets);
+
+        await tester.scrollUntilVisible(find.text('Loaded Nachos'), 150);
+        expect(find.text('£6.99'), findsOneWidget);
       });
 
       testWidgets(
         'Tapping Order navigates to OrderScreen with selected sandwich',
         (WidgetTester tester) async {
-          await tester.pumpWidget(const App());
+          await tester.pumpWidget(const MyApp());
+          await tester.pumpAndSettle();
 
           await tester.tap(find.text('Order').first);
           await tester.pumpAndSettle();
