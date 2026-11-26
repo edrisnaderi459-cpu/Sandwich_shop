@@ -1,33 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/menu_screen.dart';
 import 'package:flutter_app/constants.dart';
+import 'package:flutter/foundation.dart';
 
-void main() {
-  runApp(const App());
+bool isSupportedPlatform() {
+  if (kIsWeb) {
+    return false;
+  }
+  if (defaultTargetPlatform == TargetPlatform.android) {
+    return true;
+  }
+  return false;
 }
 
-class App extends StatelessWidget {
-  const App({super.key});
+void main() {
+  if (isSupportedPlatform()) {
+    runApp(const MyApp());
+  } else {
+    runApp(const UnsupportedPlatformApp());
+  }
+}
+
+class UnsupportedPlatformApp extends StatelessWidget {
+  const UnsupportedPlatformApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: appTitle,
-      home: const MenuScreen(),
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: shopBrand,
-          primary: shopBrand,
-        ),
-        scaffoldBackgroundColor: shopBackground,
-        appBarTheme: const AppBarTheme(
-          backgroundColor: shopBrand,
-          foregroundColor: shopWhite,
-          elevation: 0,
+      home: Scaffold(
+        body: Center(
+          child: Padding(
+            padding: EdgeInsets.all(24.0),
+            child: Text(
+              'This app saves orders with SQLite and is set up to run on '
+              'Android only. Stop the app and run it on an Android emulator '
+              'or device instead.',
+              textAlign: TextAlign.center,
+            ),
+          ),
         ),
       ),
-      );
+    );
   }
 }
 
